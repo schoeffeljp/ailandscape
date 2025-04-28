@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Landscape 2025</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+        .slide {
+            width: 1920px;
+            min-height: 1080px;
+            background: linear-gradient(135deg, #2D3748 0%, #4C51BF 50%, #805AD5 100%);
+            color: white;
+            padding: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+        .title {
+            font-size: 46px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(90deg, #E2E8F0, #FFFFFF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #E2E8F0;
+        }
+        .categories-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .category {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            height: 410px;
+            overflow: hidden;
+        }
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+        .category-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        .category-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .tools-list {
+            margin-bottom: 15px;
+        }
+        .tool-item {
+            padding: 8px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative; /* For absolute positioning of the ribbon */
+        }
+        .tool-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .tool-name {
+            font-weight: 500;
+            font-size: 16px;
+        }
+        .tool-company {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        .users-header {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #A0AEC0;
+        }
+        .users-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .user-tag {
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            margin: 0 4px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #CBD5E0;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(66, 153, 225, 0.1) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 0 15px;
+        }
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .ribbon {
+            position: absolute;
+            top: 10px;
+            right: -10px;
+            background-color: #F56565; /* Example color */
+            color: white;
+            padding: 5px 20px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="overlay"></div>
+
+        <h1 class="title">AI LANDSCAPE 2025</h1>
+        <p class="subtitle">A comprehensive overview of native AI tools categorized by function and business users</p>
+
+        <div class="legend">
+            <div class="legend-item"><div class="legend-color" style="background-color: #38B2AC;"></div> Executive/Leadership</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #4C51BF;"></div> Marketing & Sales</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #ED8936;"></div> Product Development</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #48BB78;"></div> Engineering & Technical</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #9F7AEA;"></div> Content Creation</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #F56565;"></div> Research & Analysis</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #ECC94B;"></div> Customer Support</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #63B3ED;"></div> HR & Operations</div>
+        </div>
+
+        <div class="categories-container">
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-brain"></i></div>
+                    <div class="category-title">Content Creation</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">ChatGPT</div>
+                            <div class="tool-company">OpenAI</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Claude</div>
+                            <div class="tool-company">Anthropic</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Gemini</div>
+                            <div class="tool-company">Google</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Grok</div>
+                            <div class="tool-company">xAI</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #38B2AC;"></div>
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                    <div class="user-tag" style="background-color: #48BB78;"></div>
+                    <div class="user-tag" style="background-color: #9F7AEA;"></div>
+                    <div class="user-tag" style="background-color: #F56565;"></div>
+                    <div class="user-tag" style="background-color: #ECC94B;"></div>
+                    <div class="user-tag" style="background-color: #63B3ED;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-video"></i></div>
+                    <div class="category-title">Video & Audio Generation</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Sora</div>
+                            <div class="tool-company">OpenAI</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Kling</div>
+                            <div class="tool-company">Kuaishou</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Veo</div>
+                            <div class="tool-company">Google DeepMind</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Elevenlabs</div>
+                            <div class="tool-company">ElevenLabs</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                    <div class="user-tag" style="background-color: #9F7AEA;"></div>
+                    <div class="user-tag" style="background-color: #38B2AC;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-search"></i></div>
+                    <div class="category-title">Image & Illustration</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Sora</div>
+                            <div class="tool-company">OpenAI</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Midjourney</div>
+                            <div class="tool-company">Midjourney</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Stability</div>
+                            <div class="tool-company">Stability AI</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #9F7AEA;"></div>
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                    <div class="user-tag" style="background-color: #ECC94B;"></div>
+                    <div class="user-tag" style="background-color: #F56565;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-code"></i></div>
+                    <div class="category-title">Coding & Development</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Cursor</div>
+                            <div class="tool-company">Cursor</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Windsurf</div>
+                            <div class="tool-company">Codeium</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">GitHub Copilot</div>
+                            <div class="tool-company">GitHub</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #48BB78;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-desktop"></i></div>
+                    <div class="category-title">Presentation & Design</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Gamma App</div>
+                            <div class="tool-company">Gamma</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Beautiful.ai</div>
+                            <div class="tool-company">Beautiful.ai</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">GenSpark</div>
+                            <div class="tool-company">GenSpark AI</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #56, 178, 172;"></div>
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                    <div class="user-tag" style="background-color: #9F7AEA;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-search"></i></div>
+                    <div class="category-title">Research & Knowledge Management</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">NotebookLM</div>
+                            <div class="tool-company">Google</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="ribbon">Agentic</div>
+                        <div>
+                            <div class="tool-name">Manus</div>
+                            <div class="tool-company">Manus.space</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div class="ribbon">Agentic</div>
+                        <div>
+                            <div class="tool-name">AgentSpace</div>
+                            <div class="tool-company">Google</div>
+                        </div>
+                    </div>
+                     <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Listenlabs</div>
+                            <div class="tool-company">Listen Labs</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #F56565;"></div>
+                    <div class="user-tag" style="background-color: #38B2AC;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                    <div class="user-tag" style="background-color: #63B3ED;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-users"></i></div>
+                    <div class="category-title">Meeting & Collaboration</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Fireflies</div>
+                            <div class="tool-company">Fireflies.ai</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Highlight AI</div>
+                            <div class="tool-company">Highlight</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Firecrawl</div>
+                            <div class="tool-company">Firecrawl.dev</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #38B2AC;"></div>
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                    <div class="user-tag" style="background-color: #F56565;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="category-title">Product Prototyping</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Lovable</div>
+                            <div class="tool-company">Lovable.dev</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">V0</div>
+                            <div class="tool-company">Vercel</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Bolt</div>
+                            <div class="tool-company">Replit</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                    <div class="user-tag" style="background-color: #48BB78;"></div>
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            AI Landscape 2025
+        </div>
+    </div>
+</body>
+</html>
