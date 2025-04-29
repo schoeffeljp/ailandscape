@@ -1,0 +1,236 @@
+Put your HTML text here<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group IT CAPEX Investments</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .slide {
+            width: 1280px;
+            min-height: 720px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+        }
+        .slide-header {
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+        }
+        .matrix-table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+        }
+        .matrix-table th {
+            padding: 12px 8px;
+            text-align: center;
+            font-weight: 600;
+            color: #fff;
+            background-color: #3949ab;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .matrix-table th:first-child {
+            background-color: #283593;
+            text-align: left;
+            width: 30%;
+        }
+        .matrix-table td {
+            padding: 10px 8px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .matrix-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+        .matrix-table tr:nth-child(even) {
+            background-color: #f5f7ff;
+        }
+        .impact-cell {
+            font-size: 20px;
+            color: #3949ab;
+        }
+        .no-impact {
+            color: #e0e0e0;
+        }
+        .project-description {
+            font-size: 12px;
+            color: #616161;
+            display: block;
+            margin-top: 4px;
+        }
+        .project-title {
+            font-weight: 600;
+            color: #283593;
+            display: block;
+        }
+        .impact-legend {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px;
+            gap: 20px;
+            font-size: 14px;
+        }
+        .impact-marker {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .category-tag {
+            display: inline-block;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 12px;
+            margin-right: 6px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .infra-tag {
+            background-color: #e3f2fd;
+            color: #1565c0;
+        }
+        .crm-tag {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="slide-header">
+            <h1 class="text-3xl font-bold tracking-tight">Group IT – CAPEX Investments</h1>
+        </div>
+        
+        <div class="p-4">
+            <div class="impact-legend">
+                <div class="impact-marker"><span class="category-tag infra-tag">INFRA</span> Infrastructure & Operations</div>
+                <div class="impact-marker"><span class="category-tag crm-tag">CRM</span> CRM Initiatives</div>
+                <div class="impact-marker"><i class="fas fa-check-circle text-blue-700"></i> Primary Impact</div>
+                <div class="impact-marker"><i class="fas fa-check-circle text-blue-300"></i> Secondary Impact</div>
+            </div>
+            
+            <div class="overflow-x-auto">
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Projects & Initiatives</th>
+                            <th>E&E</th>
+                            <th>Art Basel</th>
+                            <th>LMS</th>
+                            <th>Group</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="project-title"><i class="fas fa-wind text-green-600 mr-2"></i>Orsted</span>
+                                <span class="project-description">Drives revenue growth, reduces friction and improves scalability</span>
+                            </td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell no-impact">-</td>
+                            <td class="impact-cell no-impact">-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="project-title"><i class="fas fa-shield-alt text-red-600 mr-2"></i>Data Protection & Cyber Security</span>
+                                <span class="project-description">Secures data, drives compliance and prevents service disruptions</span>
+                            </td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="project-title"><i class="fas fa-wifi text-blue-600 mr-2"></i><span class="category-tag infra-tag">INFRA</span>W-Lan</span>
+                                <span class="project-description">Updates infrastructure for all fairs in Basel and Zurich</span>
+                            </td>
+                          <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell no-impact">-</td>
+                            <td class="impact-cell no-impact">-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="project-title"><i class="fas fa-cloud text-blue-500 mr-2"></i><span class="category-tag infra-tag">INFRA</span>Cloud Project</span>
+                                <span class="project-description">Reduces IT and support costs globally</span>
+                            </td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-300"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="project-title"><i class="fas fa-network-wired text-gray-700 mr-2"></i><span class="category-tag infra-tag">INFRA</span>International Locations Infrastructure</span>
+                                <span class="project-description">Modernizes global infrastructure for reliable service</span>
+                            </td>
+                            <td class="impact-cell no-impact">-</td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell no-impact">-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="project-title"><i class="fas fa-clipboard-check text-green-700 mr-2"></i><span class="category-tag crm-tag">CRM</span>Consent Logic</span>
+                                <span class="project-description">Ensures legal compliance</span>
+                            </td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-300"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="project-title"><i class="fas fa-cogs text-gray-600 mr-2"></i><span class="category-tag crm-tag">CRM</span>Technical Optimizations</span>
+                                <span class="project-description">Reduction of recurring external support costs</span>
+                            </td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-300"></i></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="project-title"><i class="fas fa-handshake text-purple-600 mr-2"></i><span class="category-tag crm-tag">CRM</span>ART Basel Partnership Onboarding</span>
+                                <span class="project-description">Increases sales opportunities</span>
+                            </td>
+                            <td class="impact-cell no-impact">-</td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell no-impact">-</td>
+                            <td class="impact-cell no-impact">-</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="project-title"><i class="fas fa-exchange-alt text-yellow-600 mr-2"></i><span class="category-tag crm-tag">CRM</span>ART Basel Migration Concept</span>
+                                <span class="project-description">Cost reduction, tool and data harmonization</span>
+                            </td>
+                            <td class="impact-cell no-impact">-</td>
+                            <td class="impact-cell"><i class="fas fa-check-circle text-blue-700"></i></td>
+                            <td class="impact-cell no-impact">-</td>
+                            <td class="impact-cell no-impact">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
