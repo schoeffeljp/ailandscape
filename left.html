@@ -109,6 +109,9 @@ Put your HTML text here<!DOCTYPE html>
             background-color: #e8f5e9;
             color: #2e7d32;
         }
+        .tr{
+          vertical-align:center;
+        }
     </style>
 </head>
 <body>
@@ -118,7 +121,10 @@ Put your HTML text here<!DOCTYPE html>
         </div>
         
         <div class="p-4">
-            
+            <div class="impact-legend">
+              
+                <div class="impact-marker"> &nbsp;</div>
+            </div>
             
             <div class="overflow-x-auto">
                 <table class="matrix-table">
@@ -129,37 +135,37 @@ Put your HTML text here<!DOCTYPE html>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr >
                             <td>
                                 <span class="project-title"><i class="fas fa-wind text-green-600 mr-2"></i>Orsted (1.225M)</span>
+                                <span class="project-description">&nbsp;<br>&nbsp; </span>
+
+
                             </td>
                            
                         </tr>
                         <tr>
                             <td>
                                 <span class="project-title"><i class="fas fa-shield-alt text-red-600 mr-2"></i>Data Protection & Cyber Security (930K)</span>
+                                <span class="project-description">&nbsp;<br>&nbsp;<br>&nbsp; </span>
+
                             </td>
                            
                         </tr>
-                        <tr>
+                        <tr height=275px>
                             <td>
-                                <span class="project-title"><i class="fas fa-network-wired text-gray-700 mr-2"></i>Infra (1.110M)</span>
+                                <span class="project-title"><span class="category-tag infra-tag">INFRA</span>Infrastructure (1.110M)</span>
                             </td>
                        
                         </tr>
-                        <tr>
+                        <tr height=350px>
                             <td>
-                                <span class="project-title"><i class="fas fa-handshake text-purple-500 mr-2"></i>CRM (1.270M))</span>
+                                <span class="project-title"><span class="category-tag crm-tag">CRM</span>CRM (1.270M)</span>
                             </td>
                           
                         </tr>
                       
-                        <tr>
-                            <td>
-                                <span class="project-title"><i class="fas fa-calendar text-blue-700 mr-2"></i>IFS (920K)</span>
-                            </td>
-                         
-                        </tr>
+                       
                         
                        
                     </tbody>
