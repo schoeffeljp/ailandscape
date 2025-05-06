@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Data Policy & Enterprise Availability</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            color: #1e3a8a;
+            margin-top: 2em;
+            margin-bottom: 1.5em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5em;
+            text-align: center;
+            font-weight: 600;
+        }
+        table {
+            width: 95%;
+            margin-left: auto;
+            margin-right: auto;
+            border-collapse: collapse;
+            margin-top: 2em;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: white;
+            border: 1px solid #e0e0e0;
+        }
+        thead {
+            background-color: #f0f4f8;
+            color: #1e3a8a;
+        }
+        thead th {
+            padding: 1.2em;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 1.2em;
+            text-align: left;
+        }
+        th {
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+        td a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        td a:hover {
+            text-decoration: underline;
+            color: #2563eb;
+        }
+        .safe {
+            color: #16a34a;
+            font-weight: 600;
+        }
+        .not-safe {
+            color: #dc2626;
+            font-weight: 600;
+        }
+        .dont-know {
+            color: #f59e0b;
+            font-weight: 600;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 3em auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Data Handling Policy (Paid/Enterprise Tiers)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>AI Tool</th>
+                    <th>Data Policy Classification</th>
+                    <th>Supporting Source</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ChatGPT (OpenAI)</td>
+                    <td class="safe">Safe – Paid business/enterprise data is not used to train models by default</td>
+                    <td><a href="https://openai.com/enterprise-privacy/" target="_blank">OpenAI Enterprise Privacy FAQ</a></td>
+                </tr>
+                <tr>
+                    <td>Claude (Anthropic)</td>
+                    <td class="safe">Safe – Does not train on user inputs for Pro or enterprise by default</td>
+                    <td><a href="https://privacy.anthropic.com/en/articles/10023580-is-my-data-used-for-model-training" target="_blank">Anthropic Privacy Center (data usage policy)</a></td>
+                </tr>
+                <tr>
+                    <td>Gemini (Google)</td>
+                    <td class="safe">Safe – Google won’t use customer Workspace/Cloud data to train models without permission</td>
+                    <td><a href="https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance" target="_blank">Google Cloud Service Terms (training restriction)</a>; <a href="https://support.google.com/a/answer/15706919?hl=en" target="_blank">Workspace Privacy</a></td>
+                </tr>
+                <tr>
+                    <td>Grok (xAI)</td>
+                    <td class="not-safe">Not Safe – By default X uses user interactions to fine-tune Grok (unless you opt-out)</td>
+                    <td><a href="https://help.x.com/en/using-x/about-grok" target="_blank">xAI Grok Help Center (data usage)</a></td>
+                </tr>
+                <tr>
+                    <td>Hedra</td>
+                    <td class="not-safe">Not Safe – User content may be anonymized and used to train Hedra’s AI models (opt-out available)</td>
+                    <td><a href="https://www.hedra.com/privacy" target="_blank">Hedra Privacy Policy</a></td>
+                </tr>
+                <tr>
+                    <td>Kling (Kuaishou)</td>
+                    <td class="dont-know">Don't Know – No clear documentation; likely subject to Kuaishou’s policies (unknown training usage)</td>
+                    <td>*(No official source available)*</td>
+                </tr>
+                <tr>
+                    <td>Veo (Google DeepMind)</td>
+                    <td class="safe">Safe – Provided via Google Cloud; customer inputs not used to train Google’s models</td>
+                    <td><a href="https://cloud.google.com/blog/products/ai-machine-learning/introducing-veo-and-imagen-3-on-vertex-ai" target="_blank">Google Cloud Generative AI Policy</a></td>
+                </tr>
+                <tr>
+                    <td>Runway</td>
+                    <td class="safe">Safe – User-uploaded media stays private and is not used to train Runway’s models</td>
+                    <td><a href="https://help.runwayml.com/hc/en-us/articles/24300377879827-Understanding-Runway-s-security-and-privacy-standards" target="_blank">Runway Security FAQ</a>; <a href="https://techcrunch.com/2024/06/17/runways-new-video-generating-ai-gen-3-offers-improved-controls/" target="_blank">TechCrunch (Runway co-founder)</a></td>
+                </tr>
+                <tr>
+                    <td>Sora (OpenAI)</td>
+                    <td class="dont-know">Don't Know – Not publicly available; OpenAI has not published specific data usage details</td>
+                    <td>*(No official source available)*</td>
+                </tr>
+                <tr>
+                    <td>Midjourney</td>
+                    <td class="safe">Safe – Does not use individual user prompts/outputs for training new models (trained on public web data)</td>
+                    <td><a href="https://genai.byu.edu/midjourney-information-page/" target="_blank">BYU GenAI Privacy Hub</a></td>
+                </tr>
+                <tr>
+                    <td>Stability (Stable Diffusion)</td>
+                    <td class="safe">Safe – Stability does not use customer prompts or images from DreamStudio for model training (no such use stated)</td>
+                    <td><a href="https://stability.ai/ds-pp" target="_blank">Stability DreamStudio Privacy (content storage only)</a></td>
+                </tr>
+                <tr>
+                    <td>ElevenLabs</td>
+                    <td class="not-safe">Not Safe – By default non-enterprise user data can be used to improve models (opt-out available); enterprise data is excluded</td>
+                    <td><a href="https://help.elevenlabs.io/hc/en-us/articles/29952728805393-Is-my-data-used-to-improve-ElevenLabs-AI-models" target="_blank">ElevenLabs Help Center (data use)</a></td>
+                </tr>
+                <tr>
+                    <td>Cursor (AI Code Editor)</td>
+                    <td class="not-safe">Not Safe – Unless “Privacy Mode” is enabled, code snippets are collected to improve Cursor’s AI</td>
+                    <td><a href="https://www.cursor.com/privacy" target="_blank">Cursor Privacy TL;DR</a></td>
+                </tr>
+                <tr>
+                    <td>Codeium (Windsurf)</td>
+                    <td class="safe">Safe – Offers “zero-data retention” mode (on by default for teams/enterprise) so user code isn’t stored or used to train models</td>
+                    <td><a href="https://codeium.com/security" target="_blank">Codeium Security (Zero Data Retention)</a></td>
+                </tr>
+                <tr>
+                    <td>GitHub Copilot</td>
+                    <td class="safe">Safe – Does not use prompts or code from Copilot for Business/Enterprise to train models</td>
+                    <td><a href="https://github.com/features/copilot" target="_blank">GitHub Copilot Trust FAQ</a></td>
+                </tr>
+                <tr>
+                    <td>Replit (Ghostwriter)</td>
+                    <td class="safe">Safe – Only public Repls are used for AI training; private code (and all enterprise data) is not used</td>
+                    <td><a href="https://blog.replit.com/how-replit-makes-sense-of-code-at-scale-ai-data" target="_blank">Replit Blog (Data Practices)</a></td>
+                </tr>
+                <tr>
+                    <td>Gamma</td>
+                    <td class="safe">Safe – No evidence of user content being used to train AI; Gamma emphasizes content privacy/security</td>
+                    <td><a href="https://gamma.app/pricing" target="_blank">Gamma FAQ (data privacy)</a></td>
+                </tr>
+                <tr>
+                    <td>Beautiful.ai</td>
+                    <td class="safe">Safe – Does not use customer presentation content for training; content remains private</td>
+                    <td><a href="https://www.beautiful.ai/security" target="_blank">Beautiful.ai Security page</a></td>
+                </tr>
+                <tr>
+                    <td>GenSpark AI</td>
+                    <td class="dont-know">Don't Know – No documentation on data usage; presumably prioritizes privacy but unclear</td>
+                    <td>*(No official source available)*</td>
+                </tr>
+                <tr>
+                    <td>Relume</td>
+                    <td class="safe">Safe – Primarily a design library/tool; no indication of user data being used to train AI models</td>
+                    <td>*(No explicit data-training policy; by design data stays within team)*</td>
+                </tr>
+                <tr>
+                    <td>NotebookLM (Google)</td>
+                    <td class="safe">Safe – An experimental Google service; follows Google’s policy of not using user Notebook data for model training (similar to Workspace data)</td>
+                    <td><a href="https://support.google.com/a/answer/15706919?hl=en" target="_blank">Google Workspace AI Privacy</a></td>
+                </tr>
+                <tr>
+                    <td>Manus</td>
+                    <td class="dont-know">Don't Know – Limited information on this tool’s data practices (assume privacy but no official details)</td>
+                    <td>*(No official source available)*</td>
+                </tr>
+                <tr>
+                    <td>AgentSpace (Google)</td>
+                    <td class="safe">Safe – (Google-based solution) subject to Google’s enterprise data protections – likely does not use organization data for training</td>
+                    <td>Google Privacy Commitments</td>
+                </tr>
+                <tr>
+                    <td>Listen Labs</td>
+                    <td class="safe">Safe – Aimed at enterprise research; emphasizes data privacy (customer interview data not reused without consent)</td>
+                    <td><a href="https://trust.listenlabs.ai/controls" target="_blank">Listen Labs Trust Center</a></td>
+                </tr>
+                <tr>
+                    <td>Fireflies.ai</td>
+                    <td class="safe">Safe – Does not use your meeting transcripts or data to train its AI models</td>
+                    <td><a href="https://fireflies.ai/blog/the-top-15-frequently-asked-questions-about-fireflies-security-2/" target="_blank">Fireflies FAQ (Privacy)</a></td>
+                </tr>
+                <tr>
+                    <td>Highlight AI</td>
+                    <td class="safe">Safe – “Private by design”; all processing on-device, content never stored or used by the service</td>
+                    <td><a href="https://highlightai.com/" target="_blank">HighlightAI Homepage</a></td>
+                </tr>
+                <tr>
+                    <td>Otter.ai</td>
+                    <td class="safe">Safe – Does not use your conversation data to train external models (or share without permission)</td>
+                    <td><a href="https://diginomica.com/monday-morning-moan-if-youre-transcribing-real-world-you-otter-not-be-using-ai-distorts-reality" target="_blank">Otter.ai Privacy Statement</a></td>
+                </tr>
+                <tr>
+                    <td>WhisprFlow</td>
+                    <td class="safe">Safe – No indication of data being used to train models; positions itself with strong user privacy (voice data kept secure)</td>
+                    <td><a href="https://www.prnewswire.com/news-releases/developers-are-ditching-their-keyboards-as-wispr-flow-expands-to-new-platforms-302399506.html" target="_blank">Wispr Flow Press Release</a></td>
+                </tr>
+                <tr>
+                    <td>Lovable</td>
+                    <td class="safe">Safe – User prompts and code remain private by default (not visible to others or used outside support needs)</td>
+                    <td><a href="https://lovable.dev/privacy" target="_blank">Lovable Privacy Policy</a></td>
+                </tr>
+                <tr>
+                    <td>V0 (Vercel)</td>
+                    <td class="not-safe">Not Safe – Unless on Enterprise (which can opt-out), user prompts/uploads may be used in model improvement processes</td>
+                    <td><a href="https://vercel.com/blog/v0-plans-for-teams" target="_blank">Vercel v0 Enterprise Features</a></td>
+                </tr>
+                <tr>
+                    <td>Bolt (Stackblitz)</td>
+                    <td class="safe">Safe – Open-source/browser-based environment; no evidence of user data being collected for model training</td>
+                    <td><a href="https://github.com/stackblitz/bolt.new/issues/1397" target="_blank">StackBlitz Bolt documentation (projects private by default)</a></td>
+                </tr>
+                <tr>
+                    <td>n8n</td>
+                    <td class="safe">Safe – Self-hosted workflow tool; user data stays within controlled environment (no training of models on user workflows)</td>
+                    <td><a href="https://blog.n8n.io/new-team-and-enterprise-plan-for-n8n-self-hosted/" target="_blank">n8n Team Plan announcement</a></td>
+                </tr>
+                <tr>
+                    <td>VectorShift</td>
+                    <td class="safe">Safe – Designed for enterprise AI automation; no indication that customer workflow data is used to train vendor models</td>
+                    <td><a href="https://www.ycombinator.com/companies/vectorshift" target="_blank">VectorShift YC description</a></td>
+                </tr>
+                <tr>
+                    <td>Zapier</td>
+                    <td class="safe">Safe – Does not use user automation data for training AI; focuses on integration and keeps data confidential</td>
+                    <td><a href="https://www.read.ai/" target="_blank">Zapier Security FAQ (no AI training usage)</a></td>
+                </tr>
+                <tr>
+                    <td>Make (Integromat)</td>
+                    <td class="safe">Safe – No evidence of user scenario data being used in model training; emphasizes data privacy for business users</td>
+                    <td><a href="https://www.make.com/en/pricing" target="_blank">Make (Integromat) Privacy Policy</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+     
+    </div>
+</body>
+</html>
