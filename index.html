@@ -179,12 +179,13 @@
             margin: 0 5px; 
             font-size: 11px; 
         }
-        .legend-color {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 6px;
-            border: 1px solid rgba(255,255,255,0.3); 
+        .legend-color { /* Style for the colored dot in the business user legend */
+             width: 12px;
+             height: 12px;
+             border-radius: 50%; /* Make it a circle */
+             margin-right: 6px;
+             border: 1px solid rgba(255,255,255,0.3); /* Optional border */
+             /* background-color is applied inline */
         }
         
         /* --- Original Ribbon Styles --- */
@@ -200,34 +201,35 @@
             font-weight: bold;
             transform: rotate(45deg);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            z-index: 2; /* Ensure ribbon is above link icon, but below tooltip */
+            z-index: 2; 
             cursor: pointer; 
             text-decoration: none;
         }
 
         /* Specific ribbon colors */
-        .ribbon.agentic { background-color: #4A5568; } /* Grey for Agentic */
-        .ribbon.free { background-color: #48BB78; } /* Green for Free */
+        .ribbon.agentic { background-color: #4A5568; } 
+        .ribbon.free { background-color: #48BB78; } 
 
         .link-icon {
             margin-left: 8px;
             color: #A0AEC0;
             font-size: 14px;
-            z-index: 1; /* Ensure link icon is below ribbon */
+            z-index: 1; 
         }
 
-        /* --- CSS for Status Dots and Tooltips --- */
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
+        /* --- CSS for Status Shield Icons and Tooltips --- */
+        .status-shield { /* Style for the shield icon itself */
+            font-size: 14px; 
             margin-right: 8px; 
             flex-shrink: 0; 
             cursor: pointer; 
+            width: 1em; 
+            text-align: center; 
+            /* Color is applied via specific classes below */
         }
-        .status-dot-safe { background-color: #48BB78; /* Green */ }
-        .status-dot-not-safe { background-color: #F56565; /* Red */ }
-        .status-dot-unknown { background-color: #ECC94B; /* Yellow */ }
+        .status-shield-safe { color: #48BB78; /* Green */ }
+        .status-shield-not-safe { color: #F56565; /* Red */ }
+        .status-shield-unknown { color: #ECC94B; /* Yellow */ }
 
         .tooltip {
             position: absolute;
@@ -237,14 +239,14 @@
             border-radius: 6px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             font-size: 12px;
-            z-index: 100; /* Highest z-index */
+            z-index: 100; 
             width: auto; 
             min-width: 180px; 
             max-width: 280px; 
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-            pointer-events: none; /* Initially not interactive */
+            pointer-events: none; 
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
             bottom: 120%; 
             left: 50%;
@@ -253,7 +255,7 @@
         .tooltip.visible {
             opacity: 1;
             visibility: visible;
-            pointer-events: auto; /* Make interactive when visible */
+            pointer-events: auto; 
         }
         .tooltip p {
             margin-bottom: 8px; 
@@ -265,7 +267,7 @@
         .tooltip a:hover {
             color: #90CDF4;
         }
-        /* --- End of CSS for Status Dots and Tooltips --- */
+        /* --- End of CSS for Status Shield Icons and Tooltips --- */
 
     </style>
 </head>
@@ -277,15 +279,14 @@
         <p class="subtitle">A curated overview of native AI tools categorized by function and business users (given the nature of generative AI there might be overlaps)</p>
 
         <div class="legend">
-            <div class="legend-item"><div class="legend-color" style="background-color: #38B2AC;"></div>Executive/Leadership</div>
-            <div class="legend-item"><div class="legend-color" style="background-color: #4C51BF;"></div>Marketing & Sales</div>
-            <div class="legend-item"><div class="legend-color" style="background-color: #ED8936;"></div>Product Development</div>
-            <div class="legend-item"><div class="legend-color" style="background-color: #48BB78;"></div>Engineering & Technical</div>
-            <div class="legend-item"><div class="legend-color" style="background-color: #9F7AEA;"></div>Content Creation</div>
-            <div class="legend-item"><div class="legend-color" style="background-color: #F56565;"></div>Research & Analysis</div>
-            <div class="legend-item"><div class="legend-color" style="background-color: #ECC94B;"></div>Customer Support</div>
-            <div class="legend-item"><div class="legend-color" style="background-color: #63B3ED;"></div>HR & Finance</div>
-         
+            <div class="legend-item"><div class="legend-color" style="background-color: #38B2AC;"></div> Executive/Leadership</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #4C51BF;"></div> Marketing & Sales</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #ED8936;"></div> Product Development</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #48BB78;"></div> Engineering & Technical</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #9F7AEA;"></div> Content Creation</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #F56565;"></div> Research & Analysis</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #ECC94B;"></div> Customer Support</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #63B3ED;"></div> HR & Operations</div>
         </div>
 
         <div class="categories-container">
@@ -733,11 +734,11 @@
 
         const toolItems = document.querySelectorAll('.tool-item');
         let activeTooltip = null; 
-        let activeDot = null; // Keep track of the dot associated with the active tooltip
+        let activeShield = null; 
         let hideTooltipTimer = null; 
 
         // Function to show a tooltip
-        function showTooltip(tooltipElement, dotElement, itemElement) {
+        function showTooltip(tooltipElement, shieldElement, itemElement) {
             if (activeTooltip && activeTooltip !== tooltipElement) {
                 activeTooltip.classList.remove('visible');
             }
@@ -745,15 +746,15 @@
 
             tooltipElement.classList.add('visible');
             activeTooltip = tooltipElement;
-            activeDot = dotElement; // Store the dot that triggered this tooltip
+            activeShield = shieldElement; 
             
             // Position tooltip
-            const dotRect = dotElement.getBoundingClientRect();
+            const shieldRect = shieldElement.getBoundingClientRect();
             const itemRect = itemElement.getBoundingClientRect(); 
             const slideRect = itemElement.closest('.slide').getBoundingClientRect();
 
-            tooltipElement.style.left = (dotRect.left - itemRect.left + dotRect.width / 2) + 'px'; 
-            tooltipElement.style.bottom = (itemRect.height - (dotRect.top - itemRect.top) + 10) + 'px';
+            tooltipElement.style.left = (shieldRect.left - itemRect.left + shieldRect.width / 2) + 'px'; 
+            tooltipElement.style.bottom = (itemRect.height - (shieldRect.top - itemRect.top) + 10) + 'px'; 
 
             const tooltipViewportRect = tooltipElement.getBoundingClientRect();
             if (tooltipViewportRect.left < slideRect.left + 5) {
@@ -761,10 +762,9 @@
                 tooltipElement.style.transform = 'translateX(0%)'; 
             } else if (tooltipViewportRect.right > slideRect.right - 5) {
                 tooltipElement.style.left = 'auto';
-                // Ensure right position is calculated correctly relative to item, preventing negative if item is wider than slide part
-                let rightOffset = itemRect.right - slideRect.right + 5;
-                tooltipElement.style.right = (itemRect.left + itemRect.width - (slideRect.left + slideRect.width) + 5) + 'px';
-
+                let rightEdgeOfItem = itemRect.left + itemRect.width;
+                let rightEdgeOfSlide = slideRect.left + slideRect.width;
+                tooltipElement.style.right = (rightEdgeOfItem - rightEdgeOfSlide + 5) + 'px';
                 tooltipElement.style.transform = 'translateX(0%)'; 
             } else {
                  tooltipElement.style.transform = 'translateX(-50%)'; 
@@ -772,28 +772,27 @@
         }
 
         // Function to hide a tooltip (can be delayed)
-        function hideTooltip(tooltipElementToHide, dotElementToCheck, immediate = false) {
+        function hideTooltip(tooltipElementToHide, shieldElementToCheck, immediate = false) {
             clearTimeout(hideTooltipTimer);
             if (immediate) {
                 if(tooltipElementToHide) {
                     tooltipElementToHide.classList.remove('visible');
                     if (activeTooltip === tooltipElementToHide) {
                         activeTooltip = null;
-                        activeDot = null;
+                        activeShield = null;
                     }
                 }
             } else {
                 hideTooltipTimer = setTimeout(() => {
-                    // Only hide if the mouse is not over the tooltip itself AND not over the dot that triggered it
                     if (tooltipElementToHide && !tooltipElementToHide.matches(':hover') &&
-                        dotElementToCheck && !dotElementToCheck.matches(':hover')) {
+                        shieldElementToCheck && !shieldElementToCheck.matches(':hover')) {
                         tooltipElementToHide.classList.remove('visible');
                         if (activeTooltip === tooltipElementToHide) {
                             activeTooltip = null;
-                            activeDot = null;
+                            activeShield = null;
                         }
                     }
-                }, 250); // Slightly shorter delay
+                }, 250); 
             }
         }
 
@@ -804,17 +803,18 @@
             const toolName = toolNameDiv.textContent.trim();
             const toolData = aiToolSafetyData[toolName] || { status: "Unknown", description: "Safety information not available for this tool.", sourceName: "N/A", sourceUrl: "#" };
 
-            const dot = document.createElement('span');
-            dot.classList.add('status-dot');
+            const shieldIcon = document.createElement('i');
+            shieldIcon.classList.add('fas', 'fa-shield-halved', 'status-shield'); 
+
             switch (toolData.status.toLowerCase()) {
                 case 'safe':
-                    dot.classList.add('status-dot-safe');
+                    shieldIcon.classList.add('status-shield-safe');
                     break;
                 case 'not safe':
-                    dot.classList.add('status-dot-not-safe');
+                    shieldIcon.classList.add('status-shield-not-safe');
                     break;
                 default: 
-                    dot.classList.add('status-dot-unknown');
+                    shieldIcon.classList.add('status-shield-unknown');
                     break;
             }
 
@@ -829,25 +829,22 @@
             const newToolNameContainer = document.createElement('div');
             newToolNameContainer.classList.add('tool-name-container'); 
 
-            newToolNameContainer.appendChild(dot);
+            newToolNameContainer.appendChild(shieldIcon); 
             newToolNameContainer.appendChild(nameAndCompanyDiv); 
 
             item.insertBefore(newToolNameContainer, item.firstChild);
             item.appendChild(tooltip); 
 
-            // Event listeners for dot
-            dot.addEventListener('mouseenter', () => showTooltip(tooltip, dot, item));
-            dot.addEventListener('mouseleave', () => hideTooltip(tooltip, dot)); // Pass the dot for checking
+            shieldIcon.addEventListener('mouseenter', () => showTooltip(tooltip, shieldIcon, item));
+            shieldIcon.addEventListener('mouseleave', () => hideTooltip(tooltip, shieldIcon));
 
-            // Event listeners for tooltip itself
             tooltip.addEventListener('mouseenter', () => clearTimeout(hideTooltipTimer)); 
-            tooltip.addEventListener('mouseleave', () => hideTooltip(tooltip, dot)); // Pass the dot for checking
+            tooltip.addEventListener('mouseleave', () => hideTooltip(tooltip, shieldIcon));
         });
 
-        // Global click listener to hide tooltip if clicked outside
         document.addEventListener('click', function(event) {
-            if (activeTooltip && !activeTooltip.contains(event.target) && event.target !== activeDot) {
-                hideTooltip(activeTooltip, activeDot, true); // Hide immediately
+            if (activeTooltip && !activeTooltip.contains(event.target) && event.target !== activeShield) {
+                hideTooltip(activeTooltip, activeShield, true); 
             }
         });
     });
