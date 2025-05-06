@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Landscape 2025</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .slide {
+            width: 100%;
+            min-height: auto;
+            background: linear-gradient(135deg, #0c2a56 0%, #081e3d 50%, #1e3a8a 100%);
+            color: white;
+            padding: 20px;
+            overflow: hidden; 
+            position: relative;
+            flex: 1;
+        }
+        .title {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #E2E8F0, #FFFFFF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #E2E8F0;
+        }
+        .categories-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        @media (min-width: 768px) {
+            .categories-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1200px) {
+            .categories-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .category {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            height: auto;
+            overflow: visible; 
+        }
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+        .category-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+        }
+        .category-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .tools-list {
+            margin-bottom: 15px;
+        }
+        .tool-item {
+            padding: 8px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative; 
+            overflow: visible; 
+        }
+        .tool-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+        .tool-name-container { 
+            display: flex;
+            align-items: center;
+            flex-grow: 1; 
+        }
+        .tool-name {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .tool-company {
+            font-size: 10px;
+            opacity: 0.7;
+        }
+        .users-header {
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #A0AEC0;
+        }
+        .users-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .user-tag {
+            border-radius: 50%;
+            width: 12px;
+            height: 12px;
+            margin: 0 4px; 
+        }
+        .footer {
+            text-align: center;
+            font-size: 10px;
+            color: #CBD5E0;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(66, 153, 225, 0.1) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: -1; 
+        }
+        .legend {
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px; 
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 0 5px; 
+            font-size: 11px; 
+        }
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+            border: 1px solid rgba(255,255,255,0.3); 
+        }
+        
+        /* --- Original Ribbon Styles --- */
+        .ribbon {
+            position: absolute;
+            top: 10px;
+            right: -10px;
+            background-color: #F56565; /* Default color */
+            color: white;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 10px;
+            font-weight: bold;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 2; /* Ensure ribbon is above link icon, but below tooltip */
+            cursor: pointer; 
+            text-decoration: none;
+        }
+
+        /* Specific ribbon colors */
+        .ribbon.agentic { background-color: #4A5568; } /* Grey for Agentic */
+        .ribbon.free { background-color: #48BB78; } /* Green for Free */
+
+        .link-icon {
+            margin-left: 8px;
+            color: #A0AEC0;
+            font-size: 14px;
+            z-index: 1; /* Ensure link icon is below ribbon */
+        }
+
+        /* --- CSS for Status Dots and Tooltips --- */
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px; 
+            flex-shrink: 0; 
+            cursor: pointer; 
+        }
+        .status-dot-safe { background-color: #48BB78; /* Green */ }
+        .status-dot-not-safe { background-color: #F56565; /* Red */ }
+        .status-dot-unknown { background-color: #ECC94B; /* Yellow */ }
+
+        .tooltip {
+            position: absolute;
+            background-color: rgba(40, 58, 90, 0.95); 
+            color: white;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            z-index: 100; /* Highest z-index */
+            width: auto; 
+            min-width: 180px; 
+            max-width: 280px; 
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+            pointer-events: none; /* Initially not interactive */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            bottom: 120%; 
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .tooltip.visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto; /* Make interactive when visible */
+        }
+        .tooltip p {
+            margin-bottom: 8px; 
+        }
+        .tooltip a {
+            color: #63B3ED; 
+            text-decoration: underline;
+        }
+        .tooltip a:hover {
+            color: #90CDF4;
+        }
+        /* --- End of CSS for Status Dots and Tooltips --- */
+
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="overlay"></div>
+
+        <h1 class="title">AI LANDSCAPE 2025</h1>
+        <p class="subtitle">A curated overview of native AI tools categorized by function and business users (given the nature of generative AI there might be overlaps)</p>
+
+        <div class="legend">
+            <div class="legend-item"><div class="legend-color" style="background-color: #38B2AC;"></div>Executive/Leadership</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #4C51BF;"></div>Marketing & Sales</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #ED8936;"></div>Product Development</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #48BB78;"></div>Engineering & Technical</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #9F7AEA;"></div>Content Creation</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #F56565;"></div>Research & Analysis</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #ECC94B;"></div>Customer Support</div>
+            <div class="legend-item"><div class="legend-color" style="background-color: #63B3ED;"></div>HR & Operations</div>
+            <div class="legend-item"><div class="legend-color status-dot-safe"></div>Tool Safe</div>
+            <div class="legend-item"><div class="legend-color status-dot-not-safe"></div>Tool Not Safe</div>
+            <div class="legend-item"><div class="legend-color status-dot-unknown"></div>Tool Safety Unknown</div>
+        </div>
+
+        <div class="categories-container">
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-brain"></i></div>
+                    <div class="category-title">Content Creation</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">ChatGPT</div>
+                            <div class="tool-company">OpenAI</div>
+                        </div>
+                        <a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Claude</div>
+                            <div class="tool-company">Anthropic</div>
+                        </div>
+                         <a href="https://www.anthropic.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Gemini</div>
+                            <div class="tool-company">Google</div>
+                        </div>
+                         <a href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Grok</div>
+                            <div class="tool-company">xAI</div>
+                        </div>
+                         <a href="https://x.ai/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #38B2AC;"></div>
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                    <div class="user-tag" style="background-color: #48BB78;"></div>
+                    <div class="user-tag" style="background-color: #9F7AEA;"></div>
+                    <div class="user-tag" style="background-color: #F56565;"></div>
+                    <div class="user-tag" style="background-color: #ECC94B;"></div>
+                    <div class="user-tag" style="background-color: #63B3ED;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-video"></i></div>
+                    <div class="category-title">Video & Audio Generation</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Hedra</div>
+                            <div class="tool-company">Hedra.com</div>
+                        </div>
+                         <a href="https://hedra.com" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Kling</div>
+                            <div class="tool-company">Kuaishou</div>
+                        </div>
+                         <a href="https://www.kuaishou.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Veo</div>
+                            <div class="tool-company">Google DeepMind</div>
+                        </div>
+                         <a href="https://deepmind.google/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Runway</div>
+                            <div class="tool-company">RunwayML.com</div>
+                        </div>
+                         <a href="https://runwayml.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                    <div class="user-tag" style="background-color: #9F7AEA;"></div>
+                    <div class="user-tag" style="background-color: #38B2AC;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-camera"></i></div>
+                    <div class="category-title">Image & Audio</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Sora</div>
+                            <div class="tool-company">OpenAI</div>
+                        </div>
+                         <a href="https://openai.com/sora" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Midjourney</div>
+                            <div class="tool-company">Midjourney</div>
+                        </div>
+                         <a href="https://www.midjourney.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Stability</div>
+                            <div class="tool-company">Stability AI</div>
+                        </div>
+                         <a href="https://stability.ai/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                     <div class="tool-item">
+                        <div>
+                            <div class="tool-name">ElevenLabs</div>
+                            <div class="tool-company">ElevanLabs.io</div>
+                        </div>
+                         <a href="https://elevenlabs.io/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #9F7AEA;"></div>
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                    <div class="user-tag" style="background-color: #ECC94B;"></div>
+                    <div class="user-tag" style="background-color: #F56565;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-code"></i></div>
+                    <div class="category-title">Coding & Development</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                         <a href="https://www.cursor.sh/" target="_blank" rel="noopener noreferrer" class="ribbon">Agentic</a>
+                        <div>
+                            <div class="tool-name">Cursor</div>
+                            <div class="tool-company">Cursor</div>
+                        </div>
+                        </div>
+                    <div class="tool-item">
+                        <a href="https://www.codeium.com/" target="_blank" rel="noopener noreferrer" class="ribbon">Agentic</a>
+                        <div>
+                            <div class="tool-name">Windsurf</div> 
+                            <div class="tool-company">Codeium</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">GitHub Copilot</div>
+                            <div class="tool-company">GitHub</div>
+                        </div>
+                        <a href="https://github.com/features/copilot" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                         <a href="https://replit.com/" target="_blank" rel="noopener noreferrer" class="ribbon agentic">Agentic</a>
+                        <div>
+                            <div class="tool-name">Replit</div>
+                            <div class="tool-company">Replit.com</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #48BB78;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-desktop"></i></div>
+                    <div class="category-title">Presentation & Website</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Gamma App</div>
+                            <div class="tool-company">Gamma</div>
+                        </div>
+                        <a href="https://gamma.app/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Beautiful.ai</div>
+                            <div class="tool-company">Beautiful.ai</div>
+                        </div>
+                        <a href="https://www.beautiful.ai/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">GenSpark</div>
+                            <div class="tool-company">GenSpark AI</div>
+                        </div>
+                        <a href="https://genspark.ai/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Relume</div>
+                            <div class="tool-company">Relume.io</div>
+                        </div>
+                        <a href="https://relume.io/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #38B2AC;"></div> 
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                    <div class="user-tag" style="background-color: #9F7AEA;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-search"></i></div>
+                    <div class="category-title">Research & Knowledge Management</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">NotebookLM</div>
+                            <div class="tool-company">Google</div>
+                        </div>
+                        <a href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <a href="https://manus.space/" target="_blank" rel="noopener noreferrer" class="ribbon">Agentic</a>
+                        <div>
+                            <div class="tool-name">Manus</div>
+                            <div class="tool-company">Manus.space</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <a href="https://workspace.google.com/" target="_blank" rel="noopener noreferrer" class="ribbon">Agentic</a> 
+                        <div>
+                            <div class="tool-name">AgentSpace</div>
+                            <div class="tool-company">Google</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Listenlabs</div>
+                            <div class="tool-company">Listen Labs</div>
+                        </div>
+                        <a href="https://listenlabs.ai/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #F56565;"></div>
+                    <div class="user-tag" style="background-color: #38B2AC;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                    <div class="user-tag" style="background-color: #63B3ED;"></div>
+                    <div class="user-tag" style="background-color: #ECC94B;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-users"></i></div>
+                    <div class="category-title">Meeting & Productivity</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Fireflies</div>
+                            <div class="tool-company">Fireflies.ai</div>
+                        </div>
+                        <a href="https://fireflies.ai/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <a href="https://www.highlight.ai/" target="_blank" rel="noopener noreferrer" class="ribbon">Free</a>
+                        <div>
+                            <div class="tool-name">Highlight AI</div>
+                            <div class="tool-company">Highlight</div>
+                        </div>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Otter.ai</div>
+                            <div class="tool-company">Otter.ai</div>
+                        </div>
+                        <a href="https://otter.ai/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">WhisprFlow</div>
+                            <div class="tool-company">Wisprflow.ai</div>
+                        </div>
+                        <a href="https://wisprflow.ai/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #38B2AC;"></div>
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                    <div class="user-tag" style="background-color: #F56565;"></div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-rocket"></i></div>
+                    <div class="category-title">Product Prototyping</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Lovable</div>
+                            <div class="tool-company">Lovable.dev</div>
+                        </div>
+                        <a href="https://lovable.dev/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">V0</div>
+                            <div class="tool-company">Vercel</div>
+                        </div>
+                        <a href="https://v0.dev/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Bolt</div>
+                            <div class="tool-company">Stackblitz</div>
+                        </div>
+                        <a href="https://Bolt.new/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                    <div class="user-tag" style="background-color: #48BB78;"></div>
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                </div>
+            </div>
+        
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-icon"><i class="fas fa-magic"></i></div>
+                    <div class="category-title">Workflow Automation</div>
+                </div>
+                <div class="tools-list">
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">N8N</div>
+                            <div class="tool-company">n8n.io</div>
+                        </div>
+                        <a href="https://n8n.io/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">VectorShift</div>
+                            <div class="tool-company">Vectorshift.ai</div>
+                        </div>
+                         <a href="https://www.vectorshift.ai/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Zapier</div>
+                            <div class="tool-company">Zapier.com</div>
+                        </div>
+                         <a href="https://zapier.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                    <div class="tool-item">
+                        <div>
+                            <div class="tool-name">Make</div>
+                            <div class="tool-company">make.com</div>
+                        </div>
+                         <a href="https://make.com/" target="_blank" rel="noopener noreferrer"><i class="fas fa-link link-icon"></i></a>
+                    </div>
+                </div>
+                <div class="users-header">Primary Business Users</div>
+                <div class="users-tags">
+                    <div class="user-tag" style="background-color: #38B2AC;"></div>
+                    <div class="user-tag" style="background-color: #4C51BF;"></div>
+                    <div class="user-tag" style="background-color: #ED8936;"></div>
+                    <div class="user-tag" style="background-color: #48BB78;"></div>
+                    <div class="user-tag" style="background-color: #9F7AEA;"></div>
+                    <div class="user-tag" style="background-color: #F56565;"></div>
+                    <div class="user-tag" style="background-color: #ECC94B;"></div>
+                    <div class="user-tag" style="background-color: #63B3ED;"></div>
+                </div>
+            </div>
+        </div>    
+        <div class="footer">
+            AI Landscape 2025
+        </div>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // --- AI Tool Safety Data ---
+        const aiToolSafetyData = {
+            "ChatGPT": { status: "Safe", description: "Paid business/enterprise data is not used to train models by default.", sourceName: "OpenAI Enterprise Privacy FAQ", sourceUrl: "https://openai.com/enterprise-privacy/" },
+            "Claude": { status: "Safe", description: "Does not train on user inputs for Pro or enterprise by default.", sourceName: "Anthropic Privacy Center", sourceUrl: "https://privacy.anthropic.com/en/articles/10023580-is-my-data-used-for-model-training" },
+            "Gemini": { status: "Safe", description: "Google won’t use customer Workspace/Cloud data to train models without permission.", sourceName: "Google Cloud Service Terms", sourceUrl: "https://cloud.google.com/vertex-ai/generative-ai/docs/data-governance" },
+            "Grok": { status: "Not Safe", description: "By default X uses user interactions to fine-tune Grok (unless you opt-out).", sourceName: "xAI Grok Help Center", sourceUrl: "https://help.x.com/en/using-x/about-grok" },
+            "Hedra": { status: "Not Safe", description: "User content may be anonymized and used to train Hedra’s AI models (opt-out available).", sourceName: "Hedra Privacy Policy", sourceUrl: "https://www.hedra.com/privacy" },
+            "Kling": { status: "Unknown", description: "No clear documentation; likely subject to Kuaishou’s policies (unknown training usage).", sourceName: "Kuaishou Policy (Unclear)", sourceUrl: "https://www.kuaishou.com/" },
+            "Veo": { status: "Safe", description: "Provided via Google Cloud; customer inputs not used to train Google’s models.", sourceName: "Google Cloud GenAI Policy", sourceUrl: "https://cloud.google.com/blog/products/ai-machine-learning/introducing-veo-and-imagen-3-on-vertex-ai" },
+            "Runway": { status: "Safe", description: "User-uploaded media stays private and is not used to train Runway’s models.", sourceName: "Runway Security FAQ", sourceUrl: "https://help.runwayml.com/hc/en-us/articles/24300377879827-Understanding-Runway-s-security-and-privacy-standards" },
+            "Sora": { status: "Unknown", description: "Not publicly available; OpenAI has not published specific data usage details.", sourceName: "OpenAI Sora Info (Pending)", sourceUrl: "https://openai.com/sora" },
+            "Midjourney": { status: "Safe", description: "Does not use individual user prompts/outputs for training new models (trained on public web data).", sourceName: "BYU GenAI Privacy Hub", sourceUrl: "https://genai.byu.edu/midjourney-information-page/" },
+            "Stability": { status: "Safe", description: "Stability does not use customer prompts or images from DreamStudio for model training (no such use stated).", sourceName: "Stability DreamStudio Privacy", sourceUrl: "https://stability.ai/ds-pp" },
+            "ElevenLabs": { status: "Not Safe", description: "By default non-enterprise user data can be used to improve models (opt-out available); enterprise data is excluded.", sourceName: "ElevenLabs Help Center", sourceUrl: "https://help.elevenlabs.io/hc/en-us/articles/29952728805393-Is-my-data-used-to-improve-ElevenLabs-AI-models" },
+            "Cursor": { status: "Not Safe", description: "Unless “Privacy Mode” is enabled, code snippets are collected to improve Cursor’s AI.", sourceName: "Cursor Privacy TL;DR", sourceUrl: "https://www.cursor.com/privacy" },
+            "Windsurf": { status: "Safe", description: "Offers “zero-data retention” mode (on by default for teams/enterprise) so user code isn’t stored or used to train models.", sourceName: "Codeium Security", sourceUrl: "https://codeium.com/security" },
+            "GitHub Copilot": { status: "Safe", description: "Does not use prompts or code from Copilot for Business/Enterprise to train models.", sourceName: "GitHub Copilot Trust FAQ", sourceUrl: "https://github.com/features/copilot" },
+            "Replit": { status: "Safe", description: "Only public Repls are used for AI training; private code (and all enterprise data) is not used.", sourceName: "Replit Blog (Data Practices)", sourceUrl: "https://blog.replit.com/how-replit-makes-sense-of-code-at-scale-ai-data" },
+            "Gamma App": { status: "Safe", description: "No evidence of user content being used to train AI; Gamma emphasizes content privacy/security.", sourceName: "Gamma FAQ (data privacy)", sourceUrl: "https://gamma.app/pricing" },
+            "Beautiful.ai": { status: "Safe", description: "Does not use customer presentation content for training; content remains private.", sourceName: "Beautiful.ai Security page", sourceUrl: "https://www.beautiful.ai/security" },
+            "GenSpark": { status: "Unknown", description: "No documentation on data usage; presumably prioritizes privacy but unclear.", sourceName: "GenSpark AI Policy (Unclear)", sourceUrl: "https://genspark.ai/" },
+            "Relume": { status: "Safe", description: "Primarily a design library/tool; no indication of user data being used to train AI models.", sourceName: "Relume Policy (Implied)", sourceUrl: "https://relume.io/" },
+            "NotebookLM": { status: "Safe", description: "An experimental Google service; follows Google’s policy of not using user Notebook data for model training (similar to Workspace data).", sourceName: "Google Workspace AI Privacy", sourceUrl: "https://support.google.com/a/answer/15706919?hl=en" },
+            "Manus": { status: "Unknown", description: "Limited information on this tool’s data practices (assume privacy but no official details).", sourceName: "Manus Policy (Unclear)", sourceUrl: "https://manus.space/" },
+            "AgentSpace": { status: "Safe", description: "(Google-based solution) subject to Google’s enterprise data protections – likely does not use organization data for training.", sourceName: "Google Privacy Commitments", sourceUrl: "https://policies.google.com/privacy/commitments" },
+            "Listenlabs": { status: "Safe", description: "Aimed at enterprise research; emphasizes data privacy (customer interview data not reused without consent).", sourceName: "Listen Labs Trust Center", sourceUrl: "https://trust.listenlabs.ai/controls" },
+            "Fireflies": { status: "Safe", description: "Does not use your meeting transcripts or data to train its AI models.", sourceName: "Fireflies FAQ (Privacy)", sourceUrl: "https://fireflies.ai/blog/the-top-15-frequently-asked-questions-about-fireflies-security-2/" },
+            "Highlight AI": { status: "Safe", description: "“Private by design”; all processing on-device, content never stored or used by the service.", sourceName: "HighlightAI Homepage", sourceUrl: "https://highlightai.com/" },
+            "Otter.ai": { status: "Safe", description: "Does not use your conversation data to train external models (or share without permission).", sourceName: "Otter.ai Privacy Statement (via Diginomica)", sourceUrl: "https://diginomica.com/monday-morning-moan-if-youre-transcribing-real-world-you-otter-not-be-using-ai-distorts-reality" },
+            "WhisprFlow": { status: "Safe", description: "No indication of data being used to train models; positions itself with strong user privacy (voice data kept secure).", sourceName: "Wispr Flow Press Release", sourceUrl: "https://www.prnewswire.com/news-releases/developers-are-ditching-their-keyboards-as-wispr-flow-expands-to-new-platforms-302399506.html" },
+            "Lovable": { status: "Safe", description: "User prompts and code remain private by default (not visible to others or used outside support needs).", sourceName: "Lovable Privacy Policy", sourceUrl: "https://lovable.dev/privacy" },
+            "V0": { status: "Not Safe", description: "Unless on Enterprise (which can opt-out), user prompts/uploads may be used in model improvement processes.", sourceName: "Vercel v0 Enterprise Features", sourceUrl: "https://vercel.com/blog/v0-plans-for-teams" },
+            "Bolt": { status: "Safe", description: "Open-source/browser-based environment; no evidence of user data being collected for model training.", sourceName: "StackBlitz Bolt documentation", sourceUrl: "https://github.com/stackblitz/bolt.new/issues/1397" },
+            "N8N": { status: "Safe", description: "Self-hosted workflow tool; user data stays within controlled environment (no training of models on user workflows).", sourceName: "n8n Team Plan announcement", sourceUrl: "https://blog.n8n.io/new-team-and-enterprise-plan-for-n8n-self-hosted/" },
+            "VectorShift": { status: "Safe", description: "Designed for enterprise AI automation; no indication that customer workflow data is used to train vendor models.", sourceName: "VectorShift YC description", sourceUrl: "https://www.ycombinator.com/companies/vectorshift" },
+            "Zapier": { status: "Safe", description: "Does not use user automation data for training AI; focuses on integration and keeps data confidential.", sourceName: "Zapier Security FAQ (via read.ai)", sourceUrl: "https://www.read.ai/" },
+            "Make": { status: "Safe", description: "No evidence of user scenario data being used in model training; emphasizes data privacy for business users.", sourceName: "Make (Integromat) Privacy Policy", sourceUrl: "https://www.make.com/en/pricing" }
+        };
+        // --- End of AI Tool Safety Data ---
+
+        const toolItems = document.querySelectorAll('.tool-item');
+        let activeTooltip = null; 
+        let activeDot = null; // Keep track of the dot associated with the active tooltip
+        let hideTooltipTimer = null; 
+
+        // Function to show a tooltip
+        function showTooltip(tooltipElement, dotElement, itemElement) {
+            if (activeTooltip && activeTooltip !== tooltipElement) {
+                activeTooltip.classList.remove('visible');
+            }
+            clearTimeout(hideTooltipTimer); 
+
+            tooltipElement.classList.add('visible');
+            activeTooltip = tooltipElement;
+            activeDot = dotElement; // Store the dot that triggered this tooltip
+            
+            // Position tooltip
+            const dotRect = dotElement.getBoundingClientRect();
+            const itemRect = itemElement.getBoundingClientRect(); 
+            const slideRect = itemElement.closest('.slide').getBoundingClientRect();
+
+            tooltipElement.style.left = (dotRect.left - itemRect.left + dotRect.width / 2) + 'px'; 
+            tooltipElement.style.bottom = (itemRect.height - (dotRect.top - itemRect.top) + 10) + 'px';
+
+            const tooltipViewportRect = tooltipElement.getBoundingClientRect();
+            if (tooltipViewportRect.left < slideRect.left + 5) {
+                tooltipElement.style.left = (slideRect.left - itemRect.left + 5) + 'px';
+                tooltipElement.style.transform = 'translateX(0%)'; 
+            } else if (tooltipViewportRect.right > slideRect.right - 5) {
+                tooltipElement.style.left = 'auto';
+                // Ensure right position is calculated correctly relative to item, preventing negative if item is wider than slide part
+                let rightOffset = itemRect.right - slideRect.right + 5;
+                tooltipElement.style.right = (itemRect.left + itemRect.width - (slideRect.left + slideRect.width) + 5) + 'px';
+
+                tooltipElement.style.transform = 'translateX(0%)'; 
+            } else {
+                 tooltipElement.style.transform = 'translateX(-50%)'; 
+            }
+        }
+
+        // Function to hide a tooltip (can be delayed)
+        function hideTooltip(tooltipElementToHide, dotElementToCheck, immediate = false) {
+            clearTimeout(hideTooltipTimer);
+            if (immediate) {
+                if(tooltipElementToHide) {
+                    tooltipElementToHide.classList.remove('visible');
+                    if (activeTooltip === tooltipElementToHide) {
+                        activeTooltip = null;
+                        activeDot = null;
+                    }
+                }
+            } else {
+                hideTooltipTimer = setTimeout(() => {
+                    // Only hide if the mouse is not over the tooltip itself AND not over the dot that triggered it
+                    if (tooltipElementToHide && !tooltipElementToHide.matches(':hover') &&
+                        dotElementToCheck && !dotElementToCheck.matches(':hover')) {
+                        tooltipElementToHide.classList.remove('visible');
+                        if (activeTooltip === tooltipElementToHide) {
+                            activeTooltip = null;
+                            activeDot = null;
+                        }
+                    }
+                }, 250); // Slightly shorter delay
+            }
+        }
+
+        toolItems.forEach(item => {
+            const toolNameDiv = item.querySelector('.tool-name');
+            if (!toolNameDiv) return;
+
+            const toolName = toolNameDiv.textContent.trim();
+            const toolData = aiToolSafetyData[toolName] || { status: "Unknown", description: "Safety information not available for this tool.", sourceName: "N/A", sourceUrl: "#" };
+
+            const dot = document.createElement('span');
+            dot.classList.add('status-dot');
+            switch (toolData.status.toLowerCase()) {
+                case 'safe':
+                    dot.classList.add('status-dot-safe');
+                    break;
+                case 'not safe':
+                    dot.classList.add('status-dot-not-safe');
+                    break;
+                default: 
+                    dot.classList.add('status-dot-unknown');
+                    break;
+            }
+
+            const tooltip = document.createElement('div');
+            tooltip.classList.add('tooltip');
+            tooltip.innerHTML = `
+                <p>${toolData.description}</p> 
+                <a href="${toolData.sourceUrl}" target="_blank" rel="noopener noreferrer">Source: ${toolData.sourceName}</a>
+            `;
+            
+            const nameAndCompanyDiv = toolNameDiv.parentElement; 
+            const newToolNameContainer = document.createElement('div');
+            newToolNameContainer.classList.add('tool-name-container'); 
+
+            newToolNameContainer.appendChild(dot);
+            newToolNameContainer.appendChild(nameAndCompanyDiv); 
+
+            item.insertBefore(newToolNameContainer, item.firstChild);
+            item.appendChild(tooltip); 
+
+            // Event listeners for dot
+            dot.addEventListener('mouseenter', () => showTooltip(tooltip, dot, item));
+            dot.addEventListener('mouseleave', () => hideTooltip(tooltip, dot)); // Pass the dot for checking
+
+            // Event listeners for tooltip itself
+            tooltip.addEventListener('mouseenter', () => clearTimeout(hideTooltipTimer)); 
+            tooltip.addEventListener('mouseleave', () => hideTooltip(tooltip, dot)); // Pass the dot for checking
+        });
+
+        // Global click listener to hide tooltip if clicked outside
+        document.addEventListener('click', function(event) {
+            if (activeTooltip && !activeTooltip.contains(event.target) && event.target !== activeDot) {
+                hideTooltip(activeTooltip, activeDot, true); // Hide immediately
+            }
+        });
+    });
+    </script>
+</body>
+</html>
